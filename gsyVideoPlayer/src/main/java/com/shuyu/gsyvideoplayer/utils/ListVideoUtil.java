@@ -273,7 +273,7 @@ public class ListVideoUtil {
                 }
                 orientationUtils.setEnable(false);
                 gsyVideoPlayer.setIfCurrentIsFullscreen(false);
-                fullViewContainer.setBackgroundColor(Color.TRANSPARENT);
+                fullViewContainer.setBackgroundColor(Color.GRAY);
                 listParent.addView(gsyVideoPlayer, listParams);
                 gsyVideoPlayer.getFullscreenButton().setImageResource(gsyVideoPlayer.getEnlargeImageRes());
                 gsyVideoPlayer.getBackButton().setVisibility(View.GONE);

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.gsyvideoplayer.R;
 import com.example.gsyvideoplayer.model.VideoModel;
@@ -74,6 +75,7 @@ public class ListVideoAdapter extends BaseAdapter {
             holder.videoContainer = (FrameLayout) convertView.findViewById(R.id.list_item_container);
             holder.playerBtn = (ImageView) convertView.findViewById(R.id.list_item_btn);
             holder.imageView = new ImageView(context);
+            //holder.textView = (TextView) convertView.findViewById(R.id.list_item_text);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -104,6 +106,7 @@ public class ListVideoAdapter extends BaseAdapter {
         FrameLayout videoContainer;
         ImageView playerBtn;
         ImageView imageView;
+        TextView textView;
     }
 
     public void setRootView(ViewGroup rootView) {

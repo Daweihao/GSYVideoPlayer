@@ -5,8 +5,8 @@ package com.example.gsyvideoplayer.model;
  */
 
 public class SwitchVideoModel {
-    private String url;
-    private String name;
+    public String url;
+    public String name;
 
     public SwitchVideoModel(String name, String url) {
         this.name = name;

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 JumpUtils.goToVideoPlayer(this);
                 break;
             case R.id.list_btn_2:
-                //支持全屏重力旋转的列表播放，滑动后不会被销毁
+                //支持全屏重力旋转的列表播放，滑动后不会被销毁   Main Focus
                 JumpUtils.goToVideoPlayer2(this);
                 break;
             case R.id.recycler:
