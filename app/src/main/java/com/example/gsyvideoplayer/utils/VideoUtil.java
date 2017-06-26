@@ -1,22 +1,15 @@
 package com.example.gsyvideoplayer.utils;
 
-import android.content.ContentProvider;
-import android.content.ContentResolver;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 
-import com.example.gsyvideoplayer.MediaBean;
+import com.example.gsyvideoplayer.model.MediaBean;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import android.content.Context;
+
 /**
  * Created by hao on 22/6/17.
  */
@@ -159,7 +152,7 @@ public class VideoUtil {
                             || name.equalsIgnoreCase(".ra")
                             || name.equalsIgnoreCase(".ndivx")
                             || name.equalsIgnoreCase(".xvid")) {
-                       MediaBean mediaBean = new MediaBean(null,null,null,null,null);
+                       MediaBean mediaBean = new MediaBean(null,null,0,0,null);
                         mediaBean.setName(file.getName());//文件名
                         mediaBean.setUrl(file.getAbsolutePath());//文件路径
                         list.add(mediaBean);

@@ -1,7 +1,5 @@
 package com.example.gsyvideoplayer.utils;
 
-import android.app.Activity;
-import android.app.ListActivity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,9 +7,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 
-import com.example.gsyvideoplayer.MediaBean;
+import com.example.gsyvideoplayer.model.MediaBean;
 import com.example.gsyvideoplayer.MyApplication;
 
 import java.io.File;
@@ -29,9 +26,10 @@ public class ScannerAnsyTask extends AsyncTask<Void,Integer,List<MediaBean>> {
 
     @Override
     protected List<MediaBean> doInBackground(Void... voids) {
+        getAllVideoInfo();
         return null;
     }
-    private void getAllVideoInfo(final Context context){
+    private void getAllVideoInfo(){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,11 +58,44 @@ public class ScannerAnsyTask extends AsyncTask<Void,Integer,List<MediaBean>> {
                         //get ThumbNails according to id
 
                         MediaStore.Video.Thumbnails.getThumbnail(cr,videoId, MediaStore.Video.Thumbnails.MICRO_KIND,null);
-                    }
-                }
+                        String []projection = {MediaStore.Video.Thumbnails._ID,
+                                MediaStore.Video.Thumbnails.DATA};
+                        Cursor cursor = cr.query(MediaStore.Video.Thumbnails.EXTERNAL_CONTENT_URI,
+                                projection,
+                                MediaStore.Video.Thumbnails._ID + "=?",
+                                new String[]{videoId+""},null );
+                        String thumbPath = "";
+                        while (cursor.moveToNext()){
+                            thumbPath = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Thumbnails.DATA));
+                        }
+                        cursor.close();
+                        String dirPath = new File(path).getParentFile().getAbsolutePath();
+                        if (allVideoTemp.containsKey(dirPath)){
+                            List<MediaBean> data = allVideoTemp.get(dirPath);
+                            data.add(new MediaBean(displayName,path,duration,size,thumbPath));
+                            continue;
+                        }else {
+                            List<MediaBean> data = new ArrayList<>();
+                            data.add(new MediaBean(displayName,path,duration,size,thumbPath));
+                            allVideoTemp.put(dirPath,data);
+                        }
 
+                    }
+                    mCursor.close();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //...
+                    }
+                });
             }
-        });
+
+        }).start();
+
+    }
+
+    private void runOnUiThread(Runnable runnable) {
     }
 
 }

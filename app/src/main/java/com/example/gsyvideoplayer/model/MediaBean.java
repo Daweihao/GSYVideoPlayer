@@ -1,4 +1,4 @@
-package com.example.gsyvideoplayer;
+package com.example.gsyvideoplayer.model;
 
 import android.graphics.Bitmap;
 
@@ -12,16 +12,15 @@ import com.example.gsyvideoplayer.model.SwitchVideoModel;
 public class MediaBean extends SwitchVideoModel {
 
     public String name;
-    public String size;
+    public long size;
+    public int duration;
+    public String thumbnail;
 
-    public Bitmap type;
-    public Bitmap  thumbnail;
-
-    public MediaBean(String name,String url,String size,Bitmap type,Bitmap thumbnail) {
+    public MediaBean(String name,String url,int duration,long size,String  thumbnail) {
         super(name, url);
         this.size = size;
-        this.type = type;
         this.thumbnail = thumbnail;
+        this.duration = duration;
 
     }
 
@@ -29,25 +28,25 @@ public class MediaBean extends SwitchVideoModel {
     public String getName(){
         return name;
     }
-    public String getSize(){
+    public long getSize(){
         return size;
     }
-    public Bitmap getType(){
-        return type;
-    }
-    public Bitmap getThumbnail(){
+    public String getThumbnail(){
         return thumbnail;
+    }
+    public int getDuration(){
+        return duration;
     }
     public void setName(String name){
         this.name = name;
     }
-    public void setSize(String size){
+    public void setSize(long size){
         this.size = size;
     }
-    public void setThumbnail(Bitmap thumbnail){
+    public void setThumbnail(String thumbnail){
         this.thumbnail = thumbnail;
     }
-    public void setPath(Bitmap type){
-        this.type = type;
+    public void setDuration(int duration){
+        this.duration = duration;
     }
 }

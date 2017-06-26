@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.gsyvideoplayer.MediaBean;
+import com.example.gsyvideoplayer.model.MediaBean;
 import com.example.gsyvideoplayer.R;
 import com.example.gsyvideoplayer.utils.ScannerAnsyTask;
 
