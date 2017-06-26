@@ -1,6 +1,8 @@
 package com.example.gsyvideoplayer;
 
 import android.app.Application;
+import android.content.Context;
+import android.provider.Settings;
 
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
@@ -13,6 +15,7 @@ import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 
 public class GSYApplication extends Application {
 
+    static Context gContext;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,5 +29,9 @@ public class GSYApplication extends Application {
         //GSYVideoManager.instance().setVideoType(this, GSYVideoType.IJKEXOPLAYER);
         //GSYVideoType.setShowType(GSYVideoType.SCREEN_MATCH_FULL);
         //GSYVideoType.setShowType(GSYVideoType.SCREEN_TYPE_FULL);
+    }
+
+    public static void initialize(Context context) {
+        gContext =  context;
     }
 }
