@@ -13,10 +13,14 @@ import android.widget.RelativeLayout;
 
 import com.example.gsyvideoplayer.adapter.ListVideoAdapter;
 import com.example.gsyvideoplayer.listener.SampleListener;
+import com.example.gsyvideoplayer.model.MediaBean;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.utils.CommonUtil;
 import com.shuyu.gsyvideoplayer.utils.Debuger;
 import com.shuyu.gsyvideoplayer.utils.ListVideoUtil;
+
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +37,7 @@ public class ListVideo2Activity extends AppCompatActivity {
     ListVideoUtil listVideoUtil;
     ListVideoAdapter listVideoAdapter;
     int lastVisibleItem;
+    HashMap<String,List<MediaBean>> videoAll;
     int firstVisibleItem;
 
     @Override
@@ -53,7 +58,7 @@ public class ListVideo2Activity extends AppCompatActivity {
         //listVideoUtil.setHideActionBar(true);
         listVideoUtil.setNeedLockFull(true);
 
-        listVideoAdapter = new ListVideoAdapter(this, listVideoUtil);
+        listVideoAdapter = new ListVideoAdapter(this, listVideoUtil,videoAll);
         listVideoAdapter.setRootView(activityListVideo);
         videoList.setAdapter(listVideoAdapter);
 

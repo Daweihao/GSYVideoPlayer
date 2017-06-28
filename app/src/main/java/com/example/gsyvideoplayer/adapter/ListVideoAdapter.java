@@ -1,6 +1,7 @@
 package com.example.gsyvideoplayer.adapter;
 
 import android.content.Context;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gsyvideoplayer.R;
+import com.example.gsyvideoplayer.model.MediaBean;
 import com.example.gsyvideoplayer.model.VideoModel;
 import com.shuyu.gsyvideoplayer.listener.StandardVideoAllCallBack;
 import com.shuyu.gsyvideoplayer.utils.FileUtils;
@@ -18,7 +20,11 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import static android.R.attr.id;
+import static android.media.CamcorderProfile.get;
 
 /**
  * Created by shuyu on 2016/11/11.
@@ -28,9 +34,10 @@ public class ListVideoAdapter extends BaseAdapter {
 
     public final static String TAG = "TT2";
 
-    private List<VideoModel> list = new ArrayList<>();
+    private List<MediaBean> list = new ArrayList<>();
     private LayoutInflater inflater = null;
     private Context context;
+    private HashMap<String,List<MediaBean>> videoAll;
 
     private ViewGroup rootView;
     private OrientationUtils orientationUtils;
@@ -39,15 +46,14 @@ public class ListVideoAdapter extends BaseAdapter {
 
     private ListVideoUtil listVideoUtil;
 
-    public ListVideoAdapter(Context context, ListVideoUtil listVideoUtil) {
+    public ListVideoAdapter(Context context, ListVideoUtil listVideoUtil, HashMap<String,List<MediaBean>> hashMap) {
         super();
         this.context = context;
         this.listVideoUtil = listVideoUtil;
+        this.videoAll = hashMap;
+
 
         inflater = LayoutInflater.from(context);
-        for (int i = 0; i < 40; i++) {
-            list.add(new VideoModel());
-        }
 
     }
 
@@ -57,13 +63,13 @@ public class ListVideoAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public MediaBean getItem(int position) {
+        return list.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return id;
     }
 
     @Override
@@ -83,7 +89,7 @@ public class ListVideoAdapter extends BaseAdapter {
 
         //增加封面
         holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        holder.imageView.setImageResource(R.mipmap.xxx1);
+        holder.imageView.setImageResource(Integer.parseInt(getItem(position).getThumbnail()));
 
         listVideoUtil.addVideoPlayer(position, holder.imageView, TAG, holder.videoContainer, holder.playerBtn);
 
@@ -93,9 +99,8 @@ public class ListVideoAdapter extends BaseAdapter {
                 notifyDataSetChanged();
                 //listVideoUtil.setLoop(true);
                 listVideoUtil.setPlayPositionAndTag(position, TAG);
-                final String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
                 //listVideoUtil.setCachePath(new File(FileUtils.getPath()));
-                listVideoUtil.startPlay(url);
+                listVideoUtil.startPlay(getItem(position).getUrl());
             }
         });
         return convertView;
