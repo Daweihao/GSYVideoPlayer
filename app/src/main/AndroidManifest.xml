@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gsyvideoplayer">
+    package="com.example.realFun">
 
     <!-- 请求访问网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,75 +12,75 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.example.realFun.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.realFun.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
 
         </activity>
         <activity
-            android:name=".PlayActivity"
+            android:name="com.example.realFun.PlayActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
-            android:name=".ListVideoActivity"
+            android:name="com.example.realFun.ListVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
-            android:name=".ListVideo2Activity"
+            android:name="com.example.realFun.ListVideo2Activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
-            android:name=".DetailPlayer"
+            android:name="com.example.realFun.DetailPlayer"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RecyclerView2Activity"
+            android:name="com.example.realFun.RecyclerView2Activity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DetailListPlayer"
+            android:name="com.example.realFun.DetailListPlayer"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WebDetailActivity"
+            android:name="com.example.realFun.WebDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name="com.example.realFun.RecyclerViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DanmkuVideoActivity"
+            android:name="com.example.realFun.DanmkuVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FragmentVideoActivity"
+            android:name="com.example.realFun.FragmentVideoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DetailMoreTypeActivity"
+            android:name="com.example.realFun.DetailMoreTypeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".InputUrlDetailActivity"
+            android:name="com.example.realFun.InputUrlDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.UploadVideo"
+            android:name="com.example.realFun.view.UploadVideo"
             android:label="@string/title_activity_upload_video"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".WelcomePage"
+            android:name="com.example.realFun.WelcomePage"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                  >

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.gsyvideoplayer.view.UploadVideo"
+    tools:context="com.example.realFun.view.UploadVideo"
     tools:showIn="@layout/activity_upload_video">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_list_upload"
