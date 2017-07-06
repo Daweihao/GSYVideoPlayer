@@ -72,5 +72,6 @@ public class RecyclerBaseAdapter extends RecyclerView.Adapter {
 
     public void setListVideoUtil(ListVideoUtil listVideoUtil) {
         this.listVideoUtil = listVideoUtil;
+
     }
 }

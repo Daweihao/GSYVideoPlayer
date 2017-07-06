@@ -2,6 +2,8 @@ package com.example.realFun;
 
 import android.annotation.TargetApi;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,16 +15,21 @@ import android.widget.ImageView;
 
 
 import com.example.realFun.listener.OnTransitionListener;
+import com.example.realFun.model.MediaBean;
 import com.example.realFun.model.SwitchVideoModel;
 import com.example.realFun.video.SampleVideo;
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
+import com.shuyu.gsyvideoplayer.utils.FileUtils;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.realFun.R.mipmap.xxx1;
 
 /**
  * 单独的视频播放页面
@@ -47,41 +54,40 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
         ButterKnife.bind(this);
-        isTransition = getIntent().getBooleanExtra(TRANSITION, false);
+//        isTransition = getIntent().getBooleanExtra(TRANSITION, false);
         init();
     }
 
     private void init() {
-        String url = "http://baobab.wdjcdn.com/14564977406580.mp4";
 
-        //String url = "http://7xse1z.com1.z0.glb.clouddn.com/1491813192";
+        String url = getIntent().getStringExtra("media_url");
         //需要路径的
-        //videoPlayer.setUp(url, true, new File(FileUtils.getPath()), "");
+        videoPlayer.setUp(url, true, new File(FileUtils.getPath()), "");
 
         //借用了jjdxm_ijkplayer的URL
-        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
-        String name = "普通";
-        SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
-
-        String source2 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f30.mp4";
-        String name2 = "清晰";
-        SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
-
-        List<SwitchVideoModel> list = new ArrayList<>();
-        list.add(switchVideoModel);
-        list.add(switchVideoModel2);
-
-        videoPlayer.setUp(list, true, "");
+//        String source1 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4";
+//        String name = "普通";
+//        SwitchVideoModel switchVideoModel = new SwitchVideoModel(name, source1);
+//
+//        String source2 = "http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f30.mp4";
+//        String name2 = "清晰";
+//        SwitchVideoModel switchVideoModel2 = new SwitchVideoModel(name2, source2);
+//
+//        List<SwitchVideoModel> list = new ArrayList<>();
+//        list.add(switchVideoModel);
+//        list.add(switchVideoModel2);
+//
+//        videoPlayer.setUp(list, true, "");
 
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.mipmap.xxx1);
+        imageView.setImageBitmap(getVideoThumbNail(url));
         videoPlayer.setThumbImageView(imageView);
 
         //增加title
         videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
-        videoPlayer.getTitleTextView().setText("测试视频");
+        videoPlayer.getTitleTextView().setText(getIntent().getStringExtra("media_name"));
         //videoPlayer.setShowPauseCover(false);
 
         //videoPlayer.setSpeed(2f);
@@ -192,6 +198,30 @@ public class PlayActivity extends AppCompatActivity {
             return true;
         }
         return false;
+
+    }
+    public Bitmap getVideoThumbNail(String filePath) {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            retriever.setDataSource(filePath);
+            bitmap = retriever.getFrameAtTime();
+        }
+        catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                retriever.release();
+            }
+            catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+        return bitmap;
     }
 
 }

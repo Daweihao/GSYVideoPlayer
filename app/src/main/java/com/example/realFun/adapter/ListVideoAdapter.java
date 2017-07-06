@@ -29,10 +29,9 @@ public class ListVideoAdapter extends BaseAdapter {
 
     public final static String TAG = "TT2";
 
-    private List<MediaBean> list = new ArrayList<>();
+    private List<MediaBean> list;
     private LayoutInflater inflater = null;
     private Context context;
-    private HashMap<String,List<MediaBean>> videoAll;
 
     private ViewGroup rootView;
     private OrientationUtils orientationUtils;
@@ -84,7 +83,7 @@ public class ListVideoAdapter extends BaseAdapter {
 
         //增加封面
         holder.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        holder.imageView.setImageResource(Integer.parseInt(getItem(position).getThumbnail()));
+        holder.imageView.setImageBitmap(getItem(position).getThumbnail());
 
         listVideoUtil.addVideoPlayer(position, holder.imageView, TAG, holder.videoContainer, holder.playerBtn);
 

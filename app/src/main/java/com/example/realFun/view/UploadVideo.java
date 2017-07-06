@@ -24,6 +24,8 @@ import com.example.realFun.R;
 import com.example.realFun.utils.ScannerAnsyTask;
 import com.shuyu.gsyvideoplayer.utils.ListVideoUtil;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -35,17 +37,22 @@ import butterknife.ButterKnife;
 public class UploadVideo extends AppCompatActivity {
 
     public List<MediaBean> mChildList;
-    public ProgressBar mProgressBar;
     private ScannerAnsyTask mAsynTask;
-    public HashMap<String,List<MediaBean>> mChildMap;
-    private TextView mTitle;
 
     @BindView(R.id.video_list)
     ListView videoList;
     @BindView(R.id.video_full_container)
     FrameLayout videoFullContainer;
-    @BindView(R.id.activity_list_video)
+    @BindView(R.id.activity_list_upload)
     RelativeLayout activityListVideo;
+    @BindView(R.id.titleTv)
+    TextView mTitle;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.mProgressBar)
+    ProgressBar mProgressBar;
 
     ListVideoUtil listVideoUtil;
     ListVideoAdapter listVideoAdapter;
@@ -62,7 +69,6 @@ public class UploadVideo extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_video);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         startScanTask();
@@ -73,15 +79,12 @@ public class UploadVideo extends AppCompatActivity {
         //listVideoUtil.setHideActionBar(true);
         listVideoUtil.setNeedLockFull(true);
 
-        listVideoAdapter = new ListVideoAdapter(this, listVideoUtil,mChildList);
-        listVideoAdapter.setRootView(activityListVideo);
-        videoList.setAdapter(listVideoAdapter);
+
 
         //listVideoUtil.setShowFullAnimation(true);
         //listVideoUtil.setAutoRotation(true);
         //listVideoUtil.setFullLandFrist(true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +118,10 @@ public class UploadVideo extends AppCompatActivity {
         public void handleMessage(Message msg){
             if (msg.what == 0x101){
                 mTitle.setText("local media list");
+                videoList.setVisibility(View.VISIBLE);
+                listVideoAdapter = new ListVideoAdapter(getBaseContext(), listVideoUtil,mChildList);
+//                listVideoAdapter.setRootView(activityListVideo);
+                videoList.setAdapter(listVideoAdapter);
 
             }
         }

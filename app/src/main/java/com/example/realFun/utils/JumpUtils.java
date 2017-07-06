@@ -20,6 +20,9 @@ import com.example.realFun.R;
 import com.example.realFun.RecyclerView2Activity;
 import com.example.realFun.RecyclerViewActivity;
 import com.example.realFun.WebDetailActivity;
+import com.example.realFun.adapter.CardViewAdapter;
+import com.example.realFun.view.UploadCardView;
+import com.example.realFun.view.UploadVideo;
 
 /**
  * Created by shuyu on 2016/11/11.
@@ -34,17 +37,19 @@ public class JumpUtils {
      * @param view
      */
     public static void goToVideoPlayer(Activity activity, View view) {
-        Intent intent = new Intent(activity, PlayActivity.class);
-        intent.putExtra(PlayActivity.TRANSITION, true);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Pair pair = new Pair<>(view, PlayActivity.IMG_TRANSITION);
-            ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    activity, pair);
-            ActivityCompat.startActivity(activity, intent, activityOptions.toBundle());
-        } else {
-            activity.startActivity(intent);
-            activity.overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
-        }
+        Intent intent = new Intent(activity, UploadCardView.class);
+        ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity);
+        ActivityCompat.startActivity(activity, intent, activityOptions.toBundle());
+//        intent.putExtra(PlayActivity.TRANSITION, true);
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+//            Pair pair = new Pair<>(view, PlayActivity.IMG_TRANSITION);
+//            ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                    activity, pair);
+//            ActivityCompat.startActivity(activity, intent, activityOptions.toBundle());
+//        } else {
+//            activity.startActivity(intent);
+//            activity.overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+//        }
     }
 
     /**
@@ -62,9 +67,10 @@ public class JumpUtils {
      * 跳转到视频列表2
      *
      * @param activity
+     * 调整到跳转上传视频处
      */
     public static void goToVideoPlayer2(Activity activity) {
-        Intent intent = new Intent(activity, ListVideo2Activity.class);
+        Intent intent = new Intent(activity, UploadVideo.class);
         ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity);
         ActivityCompat.startActivity(activity, intent, activityOptions.toBundle());
     }

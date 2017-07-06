@@ -101,6 +101,7 @@ public class ListVideoUtil {
             playBtn.setVisibility(View.VISIBLE);
             container.removeAllViews();   //增加封面
             container.addView(imgView);
+           // gsyVideoPlayer.setThumbImageView(imgView);
         }
     }
 

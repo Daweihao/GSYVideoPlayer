@@ -103,7 +103,7 @@ public class VideoUtil {
                             allPhotosTemp.put(dirPath,data);
                         }
                     }
-                    mCursor.close();
+                    mCursor.close();The application may be doing too much work on its main thread.
                 }
                 //更新界面
                 runOnUiThread(new Runnable() {
@@ -117,54 +117,5 @@ public class VideoUtil {
 
         }).start();
     }*/
-    public static void getVideoFile(final List<MediaBean> list, File file) {// 获得视频文件
-        file.listFiles(new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                // sdCard找到视频名称
-                String name = file.getName();
-                int i = name.indexOf('.');
-                if (i != -1) {
-                    name = name.substring(i);//获取文件后缀名
-                    if (name.equalsIgnoreCase(".mp4")  //忽略大小写
-                            || name.equalsIgnoreCase(".3gp")
-                            || name.equalsIgnoreCase(".wmv")
-                            || name.equalsIgnoreCase(".ts")
-                            || name.equalsIgnoreCase(".rmvb")
-                            || name.equalsIgnoreCase(".mov")
-                            || name.equalsIgnoreCase(".m4v")
-                            || name.equalsIgnoreCase(".avi")
-                            || name.equalsIgnoreCase(".m3u8")
-                            || name.equalsIgnoreCase(".3gpp")
-                            || name.equalsIgnoreCase(".3gpp2")
-                            || name.equalsIgnoreCase(".mkv")
-                            || name.equalsIgnoreCase(".flv")
-                            || name.equalsIgnoreCase(".divx")
-                            || name.equalsIgnoreCase(".f4v")
-                            || name.equalsIgnoreCase(".rm")
-                            || name.equalsIgnoreCase(".asf")
-                            || name.equalsIgnoreCase(".ram")
-                            || name.equalsIgnoreCase(".mpg")
-                            || name.equalsIgnoreCase(".v8")
-                            || name.equalsIgnoreCase(".swf")
-                            || name.equalsIgnoreCase(".m2v")
-                            || name.equalsIgnoreCase(".asx")
-                            || name.equalsIgnoreCase(".ra")
-                            || name.equalsIgnoreCase(".ndivx")
-                            || name.equalsIgnoreCase(".xvid")) {
-                       MediaBean mediaBean = new MediaBean(null,null,0,0,null);
-                        mediaBean.setName(file.getName());//文件名
-                        mediaBean.setUrl(file.getAbsolutePath());//文件路径
-                        list.add(mediaBean);
-                        Log.i("tag", "name: "+mediaBean.name+"path:"+mediaBean.url );
-                        return true;
-                    }
-                } else if (file.isDirectory()) {
-                    getVideoFile(list, file);
-                }
-                return false;
-            }
-        });
-    }
 
 }

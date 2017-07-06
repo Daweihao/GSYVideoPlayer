@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
      
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
@@ -79,6 +80,9 @@
             android:name="com.example.realFun.view.UploadVideo"
             android:label="@string/title_activity_upload_video"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.UploadCardView"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.example.realFun.WelcomePage"
             android:configChanges="orientation|keyboardHidden|screenSize"
